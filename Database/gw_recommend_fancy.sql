@@ -1,0 +1,65 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.4
+-- http://www.phpmyadmin.net
+--
+-- 主机: localhost
+-- 生成日期: 2013 年 10 月 09 日 12:38
+-- 服务器版本: 5.6.12-log
+-- PHP 版本: 5.4.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- 数据库: `gw_library`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `gw_recommend`
+--
+
+CREATE TABLE IF NOT EXISTS `gw_recommend` (
+  `bookId` int(11) NOT NULL AUTO_INCREMENT,
+  `studentNumber` char(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `schoolId` int(11) NOT NULL DEFAULT '0',
+  `recommendisbn` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `recommendTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`bookId`,`studentNumber`,`schoolId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
+
+--
+-- 转存表中的数据 `gw_recommend`
+--
+
+INSERT INTO `gw_recommend` (`bookId`, `studentNumber`, `schoolId`, `recommendisbn`, `recommendTime`) VALUES
+(1, '20111003444', 1, '978-7-89488-747-4', '2013-10-09 12:33:56'),
+(2, '20111003444', 1, '978-7-89485-546-6', '2013-10-09 12:33:56'),
+(3, '20111003444', 1, '978-7-89474-006-9', '2013-10-09 12:33:56'),
+(4, '20111003444', 1, '7-900162-55-0', '2013-10-09 12:33:56'),
+(5, '20111003444', 1, '978-7-89474-346-6', '2013-10-09 12:33:56'),
+(6, '20111003444', 1, '978-7-302-23303-9', '2013-10-09 12:33:56'),
+(7, '20111003444', 1, '978-7-89444-068-6', '2013-10-09 12:33:56'),
+(8, '20111003444', 1, '978-7-89488-937-9', '2013-10-09 12:33:57'),
+(9, '20111003444', 1, '978-7-900705-13-6', '2013-10-09 12:33:57'),
+(10, '20111003444', 1, '7-5053-3655-X', '2013-10-09 12:33:57'),
+(11, '20111003444', 1, '978-7-89485-591-6', '2013-10-09 12:33:57'),
+(12, '20111003444', 1, '978-7-111-26208-4', '2013-10-09 12:33:57'),
+(13, '20111003444', 1, '978-7-302-17585-8', '2013-10-09 12:33:57'),
+(14, '20111003444', 1, '978-7-302-18904-6', '2013-10-09 12:33:57'),
+(15, '20111003444', 1, '978-7-89464-068-0', '2013-10-09 12:33:57'),
+(16, '20111003444', 1, '978-7-115-18110-7', '2013-10-09 12:33:57'),
+(17, '20111003444', 1, '978-7-89472-398-7', '2013-10-09 12:33:57'),
+(18, '20111003444', 1, '7-5053-4064-6', '2013-10-09 12:33:57'),
+(19, '20111003444', 1, '978-7-89474-631-3', '2013-10-09 12:33:57');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

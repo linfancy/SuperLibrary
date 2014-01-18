@@ -1,0 +1,207 @@
+
+
+body {
+	margin: 0;
+	background-color: #eee;
+	height: 100%;
+}
+
+a, a:visited, a:hover {
+	text-decoration: none;
+	color: #888;
+
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Helvetica, Arial, sans-serif;
+}
+
+html {
+	margin: 0 auto;
+	height: 100%;
+}
+
+ul, li {
+	list-style: none;
+}
+.avatar img{
+	/* Responsive images (ensure images don't scale beyond their parents) */
+	max-width: 100%; /* Part 1: Set a maxium relative to the parent */
+	//width: auto\9; /* IE7-8 need help adjusting responsive images */
+	//height: auto; /* Part 2: Scale the height according to the width, otherwise you get stretching */
+	width: 108px;
+	height: 108px;
+	vertical-align: middle;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+.clearfix {
+	*zoom: 1;
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+		// Fixes Opera/contenteditable bug:
+		// http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+		line-height: 0;
+	}
+	&:after {
+		clear: both;
+	}
+}
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+// Border Radius
+.border-radius(@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+// Opacity
+.opacity(@opacity) {
+	opacity: @opacity / 100;
+	filter: ~"alpha(opacity=@{opacity})";
+}
+
+
+
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+//==============START===============
+
+.wrapper {
+	.header {
+		margin: 0 auto;
+		background-image: url("../img/top_bg.jpg");
+		-webkit-transition-property: all;
+		-webkit-transition-duration: .5s;
+		-webkit-transition-timing-function: ease-in;
+		-o-transition-property: all;
+		-o-transition-duration: .5s;
+		-o-transition-timing-function: ease-in;
+		-moz-transition-property: all;
+		-moz-transition-duration: .5s;
+		-moz-transition-timing-function: ease-in;
+		transition-property: all;
+		transition-duration: .5s;
+		transition-timing-function: ease-in;
+		background-size: cover;
+		height: 220px;
+		text-align: center;
+		color: white;
+
+		.headerContent {
+			padding-top: 33px;
+		}
+// Drop shadows
+.box-shadow(@shadow) {
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	box-shadow: @shadow;
+}
+
+		.avatar {
+			background-color: #fff;
+			margin: 0px auto;
+			border: 5px solid #FFF;
+			height: 108px;
+			width: 108px;
+			overflow: hidden;
+			.box-shadow(1px 2px 15px 0px #333);
+		}
+		#name {
+			padding-top: 10px;
+			font-size: 18px;
+			line-height: 24px;
+		}
+	}
+	.container {
+		color: #888;
+		padding-top: 15px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	a.bigBtn{
+		display: block;
+		margin: 0 auto;
+		width: 150px;
+		height: 35px;
+		line-height: 35px;
+		background: #f39412;
+		font-size: 16px;
+		color: #fff;
+		.border-radius(5px);
+	}
+		.round {
+			.border-radius(2px);
+		}
+		.panel {
+			margin: 0 auto;
+			margin-top: 10px;
+			background-color: #fff;
+			width: 290px;
+			font-size: 14px;
+			line-height: 22px;
+			.subTitle {
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+			.content {
+				padding: 10px;
+				text-align: center;
+				p{
+					margin-top: 20px;
+					text-indent: 30px;
+					text-align: left;
+				}
+				ul{
+					text-align: left;
+					margin-left: 15px;
+					li{
+						margin-bottom: 5px;
+						line-height: 20px;
+						img{
+							margin-right: 10px;
+							width: 15px;
+							}
+					}
+				}
+			}
+		}
+}
+button{
+	border: 0;
+}
+
+#footer {
+	margin-top: 40px;
+	padding: 40px 0;
+	border-top: 1px solid #cdcdcd;
+	font-size: 14px;
+	color: #999;
+	text-align: center;
+	vertical-align: top;
+
+	.free-edition {
+		display: inline-block;
+		padding: 2px;
+		height: 15px;
+		border-radius: 4px;
+		background: darkgreen;
+		color: #ffffff;
+		font-size: 12px;
+		text-align: center;
+	}
+}
