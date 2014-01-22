@@ -15,7 +15,9 @@ class SchoolAction extends CommonAction{
 	 */
 	public function getSchoolList(){
 		$model = D('School');
+		
 		if (($data = $model->field("schoolName")->select())!=false){
+			//var_dump($data);
 			$this->ajaxReturn(array('School'=>$data),'',1);
 		}else{
 			$this->ajaxReturn('', '服务器数据错误' ,0);

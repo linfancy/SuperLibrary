@@ -47,6 +47,15 @@ abstract class LibBase {
 	 */
 	public abstract function renew($bookId);
 	
+	/**
+	 * 生成请求的地址
+	 * @param string $schoolNumber 学号
+	 * @param int $type 类型： 1为正方管理系统>>我的信息；2为正方管理系统>>我的课表；3为学工管理>>我的基本信息；4为学工管理>>我的宿舍信息
+	 */
+	public abstract function getRequestUrl($schoolNumber, $type);
+
+	
+	
 	
 	
 	//===================公共函数====================================

@@ -1,0 +1,1 @@
+{"0":"id","1":"schoolName","2":"fileName","_autoinc":true,"_pk":"id","_type":{"id":"int(11)","schoolName":"varchar(200)","fileName":"varchar(30)"}}

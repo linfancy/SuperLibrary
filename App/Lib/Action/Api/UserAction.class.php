@@ -14,6 +14,10 @@ class UserAction extends Action{
 		$studentNumber = $_REQUEST['studentNumber'];
 		$password = $_REQUEST['password'];
 		$schoolId = $_REQUEST['schoolId'];
+		
+		$studentNumber = '20111003444';
+		$password = 'fancyaixiaoli';
+		$schoolId = 1;
 
 		if(empty($studentNumber) || empty($password) || empty($schoolId)){
 			$this->ajaxReturn('', '数据不合法', 0);
@@ -28,18 +32,20 @@ class UserAction extends Action{
 				'password' => $password,
 				'login-form-type'=> 'pwd'
 		);
-		vendor("Gw2.Gwtxz");
-		$user = new Gwtxz();
+		import("@.ORG.factory");
+		$className = $userModel->getSchoolClassById($schoolId);
+		$library = Factory::createClass($className);
 		$formUrl = 'http://xg.gdufs.edu.cn/pkmslogin.form';//学工管理的登陆框
-		$requestUrl = $user->getRequestUrl($field['username'], 4);//Gwtxz类里内置的一些请求地址
-		if($user->checkField($field , $formUrl)){
-			$user->saveContent($requestUrl);
+		$requestUrl = $library->getRequestUrl($field['username'] , 4);//Gwtxz类里内置的一些请求地址
+		
+		if($library->checkField($field['username'] , $field['password'],  $formUrl)){
+			$library->saveContent($requestUrl);
 			$data = array(
 					'studentNumber' => $studentNumber,
-					'username' => $user->getName(2),
+					'username' => $library->getName(2),
 					'schoolId' => $schoolId,
-					'academy' => $user->getAcademy(2),
-					'major' => $user->getMajor(2)
+					'academy' => $library->getAcademy(2),
+					'major' => $library->getMajor(2)
 			);
 			if($userModel->add($data)){
 				$this->ajaxReturn('','注册成功',1);
@@ -71,7 +77,8 @@ class UserAction extends Action{
 		if (empty($schoolId)){
 			$this->ajaxReturn('','该学校不存在',0);
 		}
-		vendor("Gw.Factory");
+		//vendor("Gw.Factory");
+		import("@.ORG.factory");
 		
 		$library = Factory::createClass($className);
 		if($library->checkField($studentNumber, $password)){

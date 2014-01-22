@@ -18,7 +18,8 @@ class RecommendAction extends CommonAction{
 		}
 		
 		
-		vendor("Gw.Factory");
+		//vendor("Gw.Factory");
+		import("@.ORG.factory");
 		$className = D('Recommend')->getSchoolClassById($schoolId);
 		$library = Factory::createClass($className);
 		

@@ -1,0 +1,1 @@
+{"0":"id","1":"studentNumber","2":"schoolId","3":"title","4":"author","5":"url","6":"isbn","7":"callNumber","8":"ordered","_autoinc":true,"_pk":"id","_type":{"id":"int(11)","studentNumber":"char(20)","schoolId":"int(11)","title":"varchar(200)","author":"varchar(200)","url":"varchar(200)","isbn":"varchar(60)","callNumber":"varchar(40)","ordered":"int(10)"}}

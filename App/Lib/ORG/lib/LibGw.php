@@ -5,6 +5,9 @@ class LibGw extends LibBase{
 	public $pageContent = '';//保存返回的页面内容
 	public $cookie = '';
 	
+	private $firstContent = '';//不知道这个干什么用
+
+	
 	public function __construct(){
 		
 	}
@@ -342,6 +345,187 @@ class LibGw extends LibBase{
 		$regular = '/<div class=title>(.|\n)*?<\/div>/i';
 		return $regular;
 	}
+	
+	
+	/**
+	 * 生成请求的地址
+	 * @param string $schoolNumber 学号
+	 * @param int $type 类型： 1为正方管理系统>>我的信息；2为正方管理系统>>我的课表；3为学工管理>>我的基本信息；4为学工管理>>我的宿舍信息
+	 * @return string $requstUrl 返回请求的地址
+	 */
+	public function getRequestUrl($schoolNumber, $type){
+		$requestUrl = '';
+		switch ($type){
+			case 1:
+				$requestUrl = 'http://jw.gdufs.edu.cn/xsgrxx.aspx?xh='.$schoolNumber;
+				break;
+			case 2:
+				$requestUrl = 'http://jw.gdufs.edu.cn/xskbcx.aspx?xh='.$schoolNumber;
+				break;
+			case 3:
+				$requestUrl = 'http://xg.gdufs.edu.cn/epstar/app/template.jsp?mainobj=SWMS/XSJBXX/T_XSJBXX_XSJBB&tfile=XGMRMB/detail_BDTAG';
+				break;
+			case 4:
+				$requestUrl = "http://xg.gdufs.edu.cn/epstar/app/template.jsp?mainobj=SWMS/SSGLZXT/SSAP/V_SS_SSXXST&tfile=XSCKMB/BDTAG&filter=V_SS_SSXXST:XH='".$schoolNumber."'";
+				break;
+			default:
+				$requestUrl = 'http://jw.gdufs.edu.cn/xsgrxx.aspx?xh='.$schoolNumber;
+	
+		}
+		return $requestUrl;
+	}
+	
+	
+	function getName($from = 1){
+		$content = $this->getContent();
+		if ($from ==1 ){
+			$pattern ='#(<span id=\"xm\">)(.*)(<\/span>)#';
+		}else{
+			$pattern = '#(<font id=\"XM\" value=\"(.+)\">)(.*)(<\/font>)#';
+		}
+	
+		if (preg_match($pattern, $content,$match)) {
+				
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * 从哪里获取学号
+	 * @param int $from 1为正方管理系统；2为学工管理
+	 * @return mixed null or string
+	 */
+	function getStudentNumber($from=1){
+		if ($from ==1 ){
+			$pattern ='#(<span id=\"xh\">)(.*)(<\/span>)#';
+		}else{
+			$pattern = '#(<font id=\"XH\" value=\"(\d){10,13}\">)(.*)(<\/font>)#';
+		}
+	
+		$content = $this->getContent();
+		if (preg_match($pattern, $content,$match)) {
+				
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * 从哪里获取学院
+	 * @param int $from 1为正方管理系统；2为学工管理
+	 * @return mixed null or string
+	 */
+	function getAcademy($from = 1){
+		if ($from ==1 ){
+			$pattern ='#(<span id=\"lbl_xy\">)(.*)(<\/span>)#';
+		}else{
+			$pattern = '#(<font id=\"YX\" value=\"(\w){4,8}\">)(.*)(<\/font>)#';
+		}
+	
+		$content = $this->getContent();
+		if (preg_match($pattern, $content,$match)) {
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * 从哪里获取年级
+	 * @param int $from 1为正方管理系统；2为学工管理
+	 * @return mixed null or string
+	 */
+	function getGrade($from = 1){
+		if ($from ==1 ){
+			$pattern ='#(<span id=\"lbl_dqszj\">)(.*)(<\/span>)#';
+		}else{
+			$pattern = '#(<font id=\"NJ\" value=\"(\w){4}\">)(.*)(<\/font>)#';
+		}
+	
+		$content = $this->getContent();
+		if (preg_match($pattern, $content,$match)) {
+				
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * 从哪里获得专业
+	 * @param int $from 1为正方管理系统；2为学工管理
+	 * @return mixed null or string
+	 */
+	function getMajor($from = 1){
+		if ($from ==1 ){
+			$pattern ='#(<span id=\"lbl_xzb\">)(.*)(<\/span>)#';
+		}else{
+			$pattern = '#(<font id=\"BJ\" value=\"(\w){7,10}\">)(.*)(<\/font>)#';
+		}
+	
+		$content = $this->getContent();
+		if (preg_match($pattern, $content,$match)) {
+				
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * 获得校区
+	 * 只能从 学工管理获得    	南校区或北校区
+	 * @return mixed null or string
+	 */
+	function getCampus(){
+	
+		$pattern = '#(<font id=\"XQ\" value=\"(.+)\">)(.*)(<\/font>)#';
+		$content = $this->getContent();
+		if (preg_match($pattern, $content,$match)) {
+				
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * 获得宿舍楼
+	 * 只能从 学工管理获得
+	 * @return mixed null or string
+	 */
+	function getBlock(){
+		$pattern = '#(<font id=\"SSL\" value=\"(.+)\">)(.*)(<\/font>)#';
+		$content = $this->getContent();
+		if (preg_match($pattern, $content,$match)) {
+				
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	/**
+	 * 获得房间号
+	 * 只能从 学工管理获得
+	 * @return mixed null or string
+	 */
+	function getRoom(){
+		$pattern = '#(<font id=\"FJH\" value=\"(\w){2,4}\">)(.*)(<\/font>)#';
+		$content = $this->getContent();
+		if (preg_match($pattern, $content,$match)) {
+				
+			return $match[3];
+		}else{
+			return NULL;
+		}
+	}
+	
+	
+	
 	
 	
 	

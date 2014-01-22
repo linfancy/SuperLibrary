@@ -9,8 +9,8 @@ class Factory{
 	public static function createClass($className){
 		try {
 			$dir = dirname(__FILE__);
-			include $dir.'/LibBase.php';
-			include $dir.'/model/'.$className.'.php';
+			include $dir.'/lib/LibBase.php';
+			include $dir.'/lib/'.$className.'.php';
 			$reflect = new ReflectionClass($className);
 			$gw = $reflect->newInstance();
 		} catch (Exception $e) {

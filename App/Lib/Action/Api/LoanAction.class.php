@@ -13,12 +13,16 @@ class LoanAction extends CommonAction{
 		$studentNumber = $_REQUEST['studentNumber'];
 		$password = $_REQUEST['password'];
 		$schoolId = $_REQUEST['schoolId'];
+		$studentNumber = '20111003444';
+		$password = 'fancyaixiaoli';
+		$schoolId = 1;
 		if(empty($studentNumber) || empty($password) || empty($schoolId)){
 			$this->ajaxReturn('', '数据不合法', 0);
 		}
 		
 		
-		vendor("Gw.Factory");
+		//vendor("Gw.Factory");
+		import("@.ORG.factory");
 		$loanModel = new LoanModel();
 		$className = $loanModel->getSchoolClassById($schoolId);
 		$library = Factory::createClass($className);
@@ -28,6 +32,7 @@ class LoanAction extends CommonAction{
 		}
 		
 		$list = $library->getLoanList();
+		var_dump($list);
 		$loanModel->addLoanList($studentNumber, $schoolId, $list);
 		
 		$returnList = $loanModel->
@@ -54,11 +59,18 @@ class LoanAction extends CommonAction{
 		$studentNumber = $_REQUEST['studentNumber'];
 		$password = $_REQUEST['password'];
 		$schoolId = $_REQUEST['schoolId'];
+		
+		$studentNumber = '20111003444';
+		$password = 'fancyaixiaoli';
+		$schoolId = 1;
+		
+		
 		if(empty($studentNumber) || empty($password) || empty($schoolId)){
 			$this->ajaxReturn('', '数据不合法', 0);
 		}
 	
-		vendor("Gw.Factory");
+		//vendor("Gw.Factory");
+		import("@.ORG.factory");
 		$historyModel = new HistoryModel();
 		$className = $historyModel->getSchoolClassById($schoolId);
 		$library = Factory::createClass($className);
@@ -116,7 +128,8 @@ class LoanAction extends CommonAction{
 			$bookquery .= '&'.$id.'=Y';
 		}
 		
-		vendor("Gw.Factory");
+		//vendor("Gw.Factory");
+		import("@.ORG.factory");
 		$loanModel = new LoanModel();
 		$className = $loanModel->getSchoolClassById($schoolId);
 		$library = Factory::createClass($className);
@@ -134,7 +147,8 @@ class LoanAction extends CommonAction{
 	
 	
 	public function test(){
-		vendor("Gw.Factory");
+		//vendor("Gw.Factory");
+		import("@.ORG.factory");
 		$model = Factory::createClass('LibGw');
 		var_dump($model->checkField("20111003632", "yin543211"));
 		
