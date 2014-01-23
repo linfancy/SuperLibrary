@@ -77,7 +77,6 @@ class UserAction extends Action{
 		if (empty($schoolId)){
 			$this->ajaxReturn('','该学校不存在',0);
 		}
-		//vendor("Gw.Factory");
 		import("@.ORG.factory");
 		
 		$library = Factory::createClass($className);
